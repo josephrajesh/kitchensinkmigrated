@@ -1,6 +1,7 @@
 import Header from './Header';
 import Members from './Members';
 import Register from './Register';
+import Footer from './Footer';
 import { useState, useEffect } from 'react';
 
 
@@ -28,7 +29,7 @@ const Home = () => {
       <br />
       {loading && <p>Loading...</p>}
       {!loading && members && <Members members={members} />}
-
+       <Footer />
     </>
   )
 }

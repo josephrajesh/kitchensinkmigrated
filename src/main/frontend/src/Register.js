@@ -1,30 +1,37 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 const Register = ({updateMembers}) => {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const fd = new FormData(event.target);
-        const data = Object.fromEntries(fd.entries());
+  const [error, setError] = useState(null);
+  const { register, handleSubmit, reset } = useForm();
 
+    const onSubmit = handleSubmit((data) => {
+        setError(null);
         console.log(data);
-        sunbmitForm(data)
+        submitForm(data);
+    });
 
-    };
-
-    const sunbmitForm = async (data) => {
-        const response = await fetch('http://localhost:8081/kitchensinknew/rest/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+    const submitForm = async (data) => {
+        try{
+            const response = await fetch('http://localhost:8081/kitchensinknew/rest/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const result = await response.json();
+            reset();
+            updateMembers(result);
+        } catch (error) {
+            console.error('Error: ', error.message, error);
+            setError(error.message);
         }
-        const result = await response.json();
-        updateMembers(result);
     }
 
     return (
@@ -42,13 +49,13 @@ const Register = ({updateMembers}) => {
             <br />
             <br />
             <Row md="auto">
-                <form onSubmit={handleSubmit} >
+                <form onSubmit={handleSubmit(onSubmit)} >
                     <Row md="auto">
                         <Col xs lg="3">
                             <label htmlFor="name"> Name: </label>
                         </Col>
                         <Col md="auto" justify="central">
-                            <input type="text" name="name" required />
+                            <input type="text" name="name" required {...register("name")} />
                         </Col>
                     </Row>
                     <br />
@@ -57,7 +64,7 @@ const Register = ({updateMembers}) => {
                             <label htmlFor="email"> Email: </label>
                         </Col>
                         <Col md="auto" justify="central">
-                            <input type="email" htmlFor="email" name="email" required />
+                            <input type="email" htmlFor="email" name="email" required required {...register("email")} />
                         </Col>
                     </Row>
                     <br />
@@ -66,13 +73,16 @@ const Register = ({updateMembers}) => {
                             <label htmlFor="phoneNumber"> Phone: </label>
                         </Col>
                         <Col md="auto" justify="central">
-                            <input type="text" name="phoneNumber" required />
+                            <input type="text" name="phoneNumber" required required {...register("phoneNumber")} />
                         </Col>
                     </Row>
                     <br />
                     <br />
                     <button className="button">Register</button>
                 </form>
+            </Row>
+            <Row md="auto">
+              {error && <p>Error: {error}</p>}
             </Row>
         </>
     );

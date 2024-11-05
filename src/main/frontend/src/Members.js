@@ -8,7 +8,7 @@ const Members = ({ members }) => {
     const columnDefs = [
         { field: 'id', headerName: 'ID' },
         { field: 'name', headerName: 'Name' },
-        { field: 'email', headerName: 'Email' },
+        { field: 'email', headerName: 'Email', flex: 2},
         { field: 'phoneNumber', headerName: 'Phone' },
         {
             field: 'restUrl', headerName: 'Rest URL',
