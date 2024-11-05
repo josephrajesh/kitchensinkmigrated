@@ -5,7 +5,7 @@ Clone Project from this repo and do a mvn clean compile
 ### Prerequisites
 Node recommends V21.0.0  
 npm recommends V10.2.0 
-#### Start
+#### Install and Start
 * cd to src/main/frontend folder
 * run 'npm install' to install all dependencies 
 * run 'npm start' to start the UI using node js
@@ -19,8 +19,9 @@ npm recommends V10.2.0
 * Set JAVA_HOME env variable as it may be needed for maven build
 ##### IDE for development 
 * Recommendation IntelliJ with AI plugin (Amazon Q)
-##### Maven 
+##### Maven - recommendation Apache Maven 3.9.9
 * To build, can use build in IDE Maven
+* Or build command line using 'mvn clean package'
 ##### MongoDB
 * Download and install. 
 * Install Mongo Compass UI for managing database
@@ -31,8 +32,12 @@ npm recommends V10.2.0
 "email": "john.smith@mailinator.com",
 "phone_number": "2125551212"
 }
-#### Start Application
-Run KitchensinkMigratedSpringbootApplication by opening it or adding to run config, or using IDE config
+### Start Application
+##### Command line 
+* build using 'mvn clean  package' command 
+* run from the folder the jar file created using 'java -jar kitchensinkmigrated-0.0.1-SNAPSHOT.jar' command
+##### IDE 
+* Run KitchensinkMigratedSpringbootApplication by opening it or adding to run config, or using IDE config
 #### Test Application
 Use swagger endpoint to test and you should see one document you added   
 http://localhost:8081/kitchensinknew/swagger-ui/index.html#/member-controller/getAllMembers
