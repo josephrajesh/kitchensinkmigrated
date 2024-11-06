@@ -23,7 +23,10 @@ npm recommends V10.2.0
 * To build, can use build in IDE Maven
 * Or build command line using 'mvn clean package'
 ##### MongoDB
-* Download and install. 
+* Download the zip file from mongodb
+* unzip the downloaded zip file. 
+* Create a directory/folder for data
+* Start MongoDB using './bin/mongod -dbpath=./data/db' command 
 * Install Mongo Compass UI for managing database
 * Create Database 'kitchensink' and collection 'members' and insert below one document 
 * {
