@@ -64,7 +64,7 @@ const Register = ({updateMembers}) => {
                             <label htmlFor="email"> Email: </label>
                         </Col>
                         <Col md="auto" justify="central">
-                            <input type="email" htmlFor="email" name="email" required required {...register("email")} />
+                            <input type="email" htmlFor="email" name="email" required {...register("email")} />
                         </Col>
                     </Row>
                     <br />
@@ -73,7 +73,7 @@ const Register = ({updateMembers}) => {
                             <label htmlFor="phoneNumber"> Phone: </label>
                         </Col>
                         <Col md="auto" justify="central">
-                            <input type="text" name="phoneNumber" required required {...register("phoneNumber")} />
+                            <input type="text" name="phoneNumber" required {...register("phoneNumber")} />
                         </Col>
                     </Row>
                     <br />
