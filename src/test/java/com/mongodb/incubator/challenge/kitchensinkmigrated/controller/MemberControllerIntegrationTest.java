@@ -113,7 +113,6 @@ public void testRegisterMember() throws Exception {
     log.info("Deleted all, remaining count: {}", memberRepository.count());
 
     // Given
-    String newMemberJson = "{'name': 'New User', 'email': 'new@example.com', 'phoneNumber': '2223334444'}";
     ObjectMapper objectMapper = new ObjectMapper();
     Member memberNew = new Member(null, "John Doe", "john@example.com", "2223334444");
     // When
