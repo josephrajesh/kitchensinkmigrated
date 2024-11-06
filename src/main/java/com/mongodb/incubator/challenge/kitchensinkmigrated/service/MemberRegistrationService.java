@@ -11,12 +11,12 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class MemberRegistration {
+public class MemberRegistrationService {
 
     private final MemberRepository memberRepository;
     private final MemberService memberService;
 
-    public MemberRegistration(MemberRepository memberRepository, MemberService memberService) {
+    public MemberRegistrationService(MemberRepository memberRepository, MemberService memberService) {
         this.memberRepository = memberRepository;
         this.memberService = memberService;
     }

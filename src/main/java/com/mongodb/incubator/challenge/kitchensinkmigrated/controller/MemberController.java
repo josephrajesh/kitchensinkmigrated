@@ -16,9 +16,8 @@
  */
 package com.mongodb.incubator.challenge.kitchensinkmigrated.controller;
 
-
 import com.mongodb.incubator.challenge.kitchensinkmigrated.model.Member;
-import com.mongodb.incubator.challenge.kitchensinkmigrated.service.MemberRegistration;
+import com.mongodb.incubator.challenge.kitchensinkmigrated.service.MemberRegistrationService;
 import com.mongodb.incubator.challenge.kitchensinkmigrated.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,11 +34,11 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 public class MemberController {
 
-    private final MemberRegistration memberRegistration;
+    private final MemberRegistrationService memberRegistrationService;
     private final MemberService memberService;
 
-    public MemberController(MemberRegistration memberRegistration, MemberService memberService) {
-        this.memberRegistration = memberRegistration;
+    public MemberController(MemberRegistrationService memberRegistrationService, MemberService memberService) {
+        this.memberRegistrationService = memberRegistrationService;
         this.memberService = memberService;
     }
 
@@ -61,7 +60,7 @@ public class MemberController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Member newMember) {
         try {
-            List<Member>  memberList = memberRegistration.register(newMember);
+            List<Member>  memberList = memberRegistrationService.register(newMember);
             // Return a success message with 201 status
             return ResponseEntity.ok(memberList);
         } catch (Throwable e) {
