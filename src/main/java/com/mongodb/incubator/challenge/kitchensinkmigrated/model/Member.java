@@ -16,6 +16,7 @@ public record Member(
         @NotBlank
         @Size(min = 1, max = 25)
         String name,
+        @NotBlank
         @Email
         String email,
         @NotBlank
