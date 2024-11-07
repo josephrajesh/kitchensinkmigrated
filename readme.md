@@ -35,6 +35,9 @@ npm recommends V10.2.0
 "email": "john.smith@mailinator.com",
 "phone_number": "2125551212"
 }
+* Add a unique index for email 
+* However for some time I have enabled an atlas db as per application properties.   
+If this is available you dont need to setup local mongodb
 ### Start Application
 ##### Command line 
 * build using 'mvn clean  package' command 
