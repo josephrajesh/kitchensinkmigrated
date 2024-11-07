@@ -23,13 +23,18 @@ const Register = ({updateMembers}) => {
                 body: JSON.stringify(data)
             });
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+               if (response.status === 409) {
+                   setError('Email already exists.');
+                   return;
+               } else {
+                throw new Error(response);
+                }
             }
             const result = await response.json();
             reset();
             updateMembers(result);
         } catch (error) {
-            console.error('Error: ', error.message, error);
+            console.error('Internal Error: ', error.message, error);
             setError(error.message);
         }
     }

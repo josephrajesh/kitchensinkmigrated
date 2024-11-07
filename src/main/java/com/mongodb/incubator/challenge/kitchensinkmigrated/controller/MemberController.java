@@ -20,6 +20,7 @@ import com.mongodb.incubator.challenge.kitchensinkmigrated.model.Member;
 import com.mongodb.incubator.challenge.kitchensinkmigrated.service.MemberRegistrationService;
 import com.mongodb.incubator.challenge.kitchensinkmigrated.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +64,10 @@ public class MemberController {
             List<Member>  memberList = memberRegistrationService.register(newMember);
             // Return a success message with 201 status
             return ResponseEntity.ok(memberList);
+        } catch (DuplicateKeyException e) {
+            String errorMessage = getRootErrorMessage(e);
+            // Return error message with 500 status
+            return new ResponseEntity<>(HttpStatus.CONFLICT); // Return a 409 Conflict status
         } catch (Throwable e) {
             String errorMessage = getRootErrorMessage(e);
             // Return error message with 500 status
