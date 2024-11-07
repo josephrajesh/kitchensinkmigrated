@@ -27,8 +27,8 @@ const Register = ({updateMembers}) => {
                    setError('Email already exists.');
                    return;
                } else {
-                throw new Error(response);
-                }
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+               }
             }
             const result = await response.json();
             reset();
